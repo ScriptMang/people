@@ -1,23 +1,39 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
 type person struct {
-	ID string    `json:"id"`
+	ID    string `json:"id"`
 	Fname string `json:"firstname"`
 	Lname string `json:"lastname"`
-	age int      `json:"age"`
+	Age   int    `json:"age"`
+}
+
+var persons = []person{
+	{ID: "1", Fname: "Bob", Lname: "Ross", Age: 50},
+	{ID: "2", Fname: "Kongary", Lname: "Kat", Age: 34},
+	{ID: "3", Fname: "LimeStone", Lname: "Rose", Age: 45},
+}
+
+func getPersons(c *gin.Context) {
+	c.JSON(http.StatusOK, persons)
 }
 
 func main() {
 	//boiler plate
-	resp := gin.Default()
-	resp.GET("/marco", func(c *gin.Context){
-		c.JSON(200, gin.H{
-			"msg": "polo",
+	router := gin.Default()
+
+	router.Static("./css", "styles/")
+	router.LoadHTMLGlob("pages/*.html")
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"content": "This is an index page...",
 		})
-   })
-   resp.Run()
+	})
+	router.GET("/persons", getPersons)
+	router.Run()
 }
