@@ -14,7 +14,7 @@ func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("docs/*.html")
 
-	router.Static("/docs", "./docs")
+	router.Static("/css", "./docs/css")
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"content": "This is an index page...",
