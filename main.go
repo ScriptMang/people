@@ -24,11 +24,10 @@ func getPersons(c *gin.Context) {
 }
 
 func main() {
-	//boiler plate
 	router := gin.Default()
 
 	router.Static("./css", "styles/")
-	router.LoadHTMLGlob("pages/*.html")
+	router.LoadHTMLGlob("docs/*.html")
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"content": "This is an index page...",
