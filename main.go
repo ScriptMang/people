@@ -7,7 +7,7 @@ import (
 )
 
 func getPersons(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "people/docs/persons.json")
+	c.Redirect(http.StatusMovedPermanently, "./persons.json")
 }
 
 func main() {
