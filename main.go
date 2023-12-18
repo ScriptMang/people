@@ -7,14 +7,14 @@ import (
 )
 
 func getPersons(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "/docs/persons.json")
+	c.Redirect(http.StatusMovedPermanently, "./docs/persons.json")
 }
 
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("docs/*.html")
 
-	router.Static("/css", "./docs/css")
+	router.Static("docs", "./docs")
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"content": "This is an index page...",
