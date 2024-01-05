@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{ define "request1.tmpl" }}
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,8 +8,9 @@
 </head>
 
 <body>
-	<h1>Welcome to the Index Page</h1>
-	<p>This is a some random text for testing purposes</p>
-	<br>
+  <h1>Request1</h1>
+  <p>testing for displayed json </p>
+  <p>{{.people}}</p>
 </body>
 </html>
+{{ end }}
